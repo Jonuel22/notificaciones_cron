@@ -1,0 +1,20 @@
+{
+  "name": "cron",
+  "version": "1.0.0",
+  "main": "cronjob.js",
+  "scripts": {
+    "start": "node cronjob.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cron": "file:",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.16",
+    "pg": "^8.13.1"
+  }
+}
