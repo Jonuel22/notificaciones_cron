@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    container_name: api
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/mydb  # Cadena de conexión con PostgreSQL
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  notificaciones:
+    build: ./notificaciones
+    container_name: notificaciones
+    environment:
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/mydb  # Cadena de conexión con PostgreSQL
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    driver: bridge
