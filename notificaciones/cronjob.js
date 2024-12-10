@@ -5,11 +5,11 @@ require('dotenv').config();  // Cargar las variables del archivo .env
 
 // Configuración de la base de datos PostgreSQL
 const client = new Client({
-  host: process.env.DB_HOST,  // Tomará el valor desde el .env o 'postgres' si no está definida
-  port: process.env.DB_PORT,  // Tomará el valor desde el .env o 5432 por defecto
-  user: process.env.DB_USER,  // Tomará el valor desde el .env o 'postgres' por defecto
-  password: process.env.DB_PASSWORD,  // Tomará el valor desde el .env o '1234' por defecto
-  database: process.env.DB_NAME,  // Tomará el valor desde el .env o 'mydb' por defecto
+  host: process.env.DB_HOST,  
+  port: process.env.DB_PORT,  
+  user: process.env.DB_USER,  
+  password: process.env.DB_PASSWORD,  
+  database: process.env.DB_NAME,  
 });
 
 // Conectar a la base de datos
@@ -17,15 +17,15 @@ client.connect()
   .then(() => console.log("Conexión a la base de datos establecida"))
   .catch(err => console.error("Error de conexión a la base de datos", err));
 
-// Configuración del servicio de correo (Mailtrap, por ejemplo)
+// Configuración del servicio de correo (Mailtrap)
 const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,  // Tomará el valor desde el .env o 'smtp.mailtrap.io' por defecto
-  port: process.env.MAIL_PORT,  // Tomará el valor desde el .env o 587 por defecto
+  host: process.env.MAIL_HOST,  // Tomarán los valores desde el .env
+  port: process.env.MAIL_PORT,  
   auth: {
-    user: process.env.MAIL_USER,  // Tomará el valor desde el .env
-    pass: process.env.MAIL_PASS   // Tomará el valor desde el .env
+    user: process.env.MAIL_USER,  
+    pass: process.env.MAIL_PASS   
   },
-  secure: false,  // Si usas STARTTLS, `secure` debe ser `false`
+  secure: false, 
   tls: {
     rejectUnauthorized: false  // Esto es útil si hay problemas con certificados
   }
